@@ -10,8 +10,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [Color("TableLightGreen"), Color("TableDarkGreen")]), startPoint: .top, endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all)
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color("TableLightGreen"), Color("TableDarkGreen")]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Image("DiceeLogo")
+                HStack {
+                    Image("DiceOne")
+                        .padding(.trailing, 30.0)
+                    Image("DiceTwo")
+                        .padding(.leading, 30.0)
+                }
+                .padding(.vertical, 150.0)
+                Rectangle()
+                    .foregroundColor(Color("BrandRed"))
+                    .frame(width: 100, height: 50)
+                    .overlay(Button(action: {
+                        print("You pressed roll.")
+                    }, label: {
+                        Text("Roll")
+                            .foregroundColor(.white)
+                            .font(.title)
+                    }))
+                
+            }
+        }
     }
 }
 
