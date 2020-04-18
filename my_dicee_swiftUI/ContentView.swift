@@ -16,18 +16,16 @@ struct ContentView: View {
             VStack {
                 Image("DiceeLogo")
                 HStack {
-                    Image("DiceOne")
+                    Dice()
                         .padding(.trailing, 30.0)
-                    Image("DiceTwo")
+                    Dice()
                         .padding(.leading, 30.0)
                 }
                 .padding(.vertical, 150.0)
                 Rectangle()
                     .foregroundColor(Color("BrandRed"))
                     .frame(width: 100, height: 50)
-                    .overlay(Button(action: {
-                        print("You pressed roll.")
-                    }, label: {
+                    .overlay(Button(action: roll, label: {
                         Text("Roll")
                             .foregroundColor(.white)
                             .font(.title)
@@ -36,10 +34,23 @@ struct ContentView: View {
             }
         }
     }
+    
+    func roll() {
+        print("You pressed roll.")
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct Dice: View {
+    
+    static let imageNames = ["DiceOne", "DiceTwo", "DiceThree", "DiceFour", "DiceFive", "DiceSix", ]
+    
+    var body: some View {
+        Image(Dice.imageNames.randomElement()!)
     }
 }
