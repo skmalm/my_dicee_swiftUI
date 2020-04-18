@@ -11,26 +11,29 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
+            // Using gradient as learning tool (instead of image)
             LinearGradient(gradient: Gradient(colors: [Color("TableLightGreen"), Color("TableDarkGreen")]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
+//            Image("GreenBackground")
+//                .resizable()
+//                .edgesIgnoringSafeArea(.all)
             VStack {
                 Image("DiceeLogo")
+                Spacer()
                 HStack {
-                    Dice()
-                        .padding(.trailing, 30.0)
-                    Dice()
-                        .padding(.leading, 30.0)
+                    DiceView()
+                    DiceView()
                 }
-                .padding(.vertical, 150.0)
-                Rectangle()
-                    .foregroundColor(Color("BrandRed"))
-                    .frame(width: 100, height: 50)
-                    .overlay(Button(action: roll, label: {
-                        Text("Roll")
-                            .foregroundColor(.white)
-                            .font(.title)
-                    }))
-                
+                    .padding(.horizontal, 30.0)
+                Spacer()
+                Button(action: roll, label: {
+                    Text("Roll")
+                        .font(.system(size: 50))
+                        .fontWeight(.heavy)
+                        .foregroundColor(.white)
+                        .padding()
+                    })
+                        .background(Color("BrandRed"))
             }
         }
     }
@@ -46,11 +49,14 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct Dice: View {
+struct DiceView: View {
     
-    static let imageNames = ["DiceOne", "DiceTwo", "DiceThree", "DiceFour", "DiceFive", "DiceSix", ]
+    static let imageNames = ["DiceOne", "DiceTwo", "DiceThree", "DiceFour", "DiceFive", "DiceSix"]
     
     var body: some View {
-        Image(Dice.imageNames.randomElement()!)
+        Image(DiceView.imageNames.randomElement()!)
+        .resizable()
+        .aspectRatio(1, contentMode: .fit)
+        .padding()
     }
 }
