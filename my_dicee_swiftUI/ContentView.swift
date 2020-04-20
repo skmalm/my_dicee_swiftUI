@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var leftDiceNumber = 1
-    @State var rightDiceNumber = 1
+    @State private var leftDiceNumber = 1
+    @State private var rightDiceNumber = 1
     
     var body: some View {
         ZStack {
@@ -43,7 +43,7 @@ struct ContentView: View {
         }
     }
     
-    func roll() {
+    private func roll() {
         leftDiceNumber = Int.random(in: 1...6)
         rightDiceNumber = Int.random(in: 1...6)
     }
@@ -59,7 +59,7 @@ struct DiceView: View {
     
     static let imageNames = ["DiceOne", "DiceTwo", "DiceThree", "DiceFour", "DiceFive", "DiceSix"]
     
-    var number: Int
+    private var number: Int
     
     var body: some View {
         Image(DiceView.imageNames[number - 1])
